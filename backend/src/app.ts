@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import connectDB  from "./config/db";
 import authRoutes from './routes/authRoutes'
 import userRoutes from './routes/userRoutes'
+import adminRoutes from './routes/adminRoutes'
 
 dotenv.config();
 connectDB();
@@ -23,6 +24,6 @@ app.use(cors({
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes)
-app.use("/api/admin")
+app.use("/api/admin", adminRoutes)
 
 export default app;

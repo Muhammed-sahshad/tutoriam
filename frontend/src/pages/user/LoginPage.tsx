@@ -2,10 +2,20 @@ import Header from "@/components/user/login/Header";
 import LoginForm from "@/components/user/login/LoginForm";
 import LoginImage from "@/components/user/login/LoginImage";
 import SignupForm from "@/components/user/login/SignupForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [signState, setSignState] = useState<"signIn" | "signUp">("signIn");
+  const user = useSelector((state:any) => state.auth.user)
+  const isAdmin = localStorage.getItem("adminLoggedIn")
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(user && !isAdmin){
+      navigate('/')
+    }
+  },[])
   return (
     <div>
       <Header signState={signState} setSignState={setSignState} />
